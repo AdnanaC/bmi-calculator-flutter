@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'iconText.dart';
 import 'reusableCard.dart';
+import 'roundButton.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 180;
   int weight = 60;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -130,14 +132,72 @@ class _InputPageState extends State<InputPage> {
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [],
+                              children: [
+                                RoundButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onClick: () {
+                                    setState(() {
+                                      weight--;
+                                    });
+                                  },
+                                ),
+                                SizedBox(
+                                  width: 10.0,
+                                ),
+                                RoundButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onClick: () {
+                                    setState(() {
+                                      weight++;
+                                    });
+                                  },
+                                ),
+                              ],
                             )
                           ],
                         ),
                         color: Color(0xFF1D1E33)),
                   ),
                   Expanded(
-                    child: ReusableCard(color: Color(0xFF1D1E33)),
+                    child: ReusableCard(
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'AGE',
+                              style: kLabelTextStyle,
+                            ),
+                            Text(
+                              age.toString(),
+                              style: kNumberTextStyle,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                RoundButton(
+                                  icon: FontAwesomeIcons.minus,
+                                  onClick: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  },
+                                ),
+                                SizedBox(
+                                  width: 10.0,
+                                ),
+                                RoundButton(
+                                  icon: FontAwesomeIcons.plus,
+                                  onClick: () {
+                                    setState(() {
+                                      age++;
+                                    });
+                                  },
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        color: Color(0xFF1D1E33)),
                   ),
                 ],
               ),
