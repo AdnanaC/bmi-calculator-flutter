@@ -1,9 +1,13 @@
+import 'package:bmi_calculator/calcBrain.dart';
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/resultsPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'bottomButton.dart';
 import 'iconText.dart';
+import 'resultsPage.dart';
 import 'reusableCard.dart';
 import 'roundButton.dart';
 
@@ -202,12 +206,21 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              color: Color(0xFFEB1555),
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: 80.0,
-            ),
+            BottomButton(
+                onClick: () {
+                  CalcBrain calcBrain =
+                      CalcBrain(height: height, weight: weight);
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ResultsPage(
+                                bmiResult: calcBrain.calculateBMI(),
+                                resultText: calcBrain.getResult(),
+                                interpretation: calcBrain.getInterpretation(),
+                              )));
+                },
+                text: 'Get Results'),
           ],
         ));
   }
